@@ -1,0 +1,154 @@
+* {
+    -fx-text-fill: #000;
+    -fx-background-color: #3a3;
+}
+
+.context-menu {
+    -fx-font-size: 12px;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+}
+
+.ttl {
+    -fx-padding: 1px;
+    -fx-background-color: #282;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+}
+.ttl Label {
+    -fx-background-color: #282;
+    -fx-alignment: center-left;
+    -fx-padding: 3px;
+}
+.ttl-btn {    
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: #282;
+    -fx-background-radius: 50px;
+    -fx-border-color: radial-gradient(center 14px 14px, radius 25px, black 10%, #3a3 65%, black 90%);
+    -fx-border-style: solid;
+    -fx-border-width: 5px;
+    -fx-border-radius: 50px;
+}
+.ttl-btn:hover {
+    -fx-background-color: #3a3;
+}
+.ttl-btn:pressed {
+    -fx-background-color: #444;
+}
+
+
+
+.player {
+    -fx-padding: 3px;
+}
+.tools {
+    -fx-pref-width: 1000px;
+    -fx-background-color: #282;
+    -fx-alignment: center-left;
+}
+.tools-btn {
+    -fx-padding: 3px;
+    -fx-background-color: #282;
+    -fx-text-fill: #222;
+    -fx-alignment: center-left;
+}
+.tools-btn:hover {
+    -fx-background-color: #3a3;
+}
+
+.controls {
+    -fx-pref-width: 1000px;
+    -fx-alignment: center;
+    -fx-valignment: center;
+}
+
+.pl-min-btn {
+    -fx-text-fill: white;
+    -fx-background-color: #282;
+    -fx-background-radius: 50px;
+    -fx-border-color: radial-gradient(center 24px 24px, radius 40px, black 10%, #3a3 65%, black 90%);
+    -fx-border-style: solid;
+    -fx-border-width: 5px;
+    -fx-border-radius: 50px;
+}
+.pl-min-btn:hover {
+    -fx-background-color: #3a3;
+}
+.pl-min-btn:pressed {
+    -fx-background-color: #444;
+}
+
+.pl-btn {
+    -fx-text-fill: white;
+    -fx-background-color: #282;
+    -fx-background-radius: 50px;
+    -fx-border-color: radial-gradient(center 34px 34px, radius 60px, black 10%, #3a3 60%, black 90%);
+    -fx-border-style: solid;
+    -fx-border-width: 6px;
+    -fx-border-radius: 50px;
+}
+.pl-btn:hover {
+    -fx-background-color: #3a3;
+}
+.pl-btn:pressed {
+    -fx-background-color: #444;
+}
+
+.controls-volume {
+    -fx-alignment: center;
+    -fx-valignment: center;
+}
+.controls-volume .track {
+    -fx-background-color: #333;
+}
+.controls-volume .thumb {
+    -fx-pref-width: 10px;
+    -fx-background-color: #282;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.player-slider {
+    -fx-padding: 2 0 0 0;
+}
+
+.player-slider .track {
+    -fx-background-color: #333;
+}
+
+.player-slider .thumb {
+    -fx-background-color: #282;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+}
+
+.player-list Label {
+    -fx-padding: 3px;
+    -fx-background-color: #282;
+    -fx-pref-width: 1000px;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+}
+
+.player-list {
+    -fx-cursor: hand;
+}
+
+.player-list *:hover {
+    -fx-text-fill: #AAA;
+}
+
+.player-list ListView .thumb {
+    -fx-background-color: #444;
+}
+.player-list ListView *:focused {
+    -fx-background-color: #282;
+}

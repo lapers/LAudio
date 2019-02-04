@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="LAudio.jnlp">
+  <information>
+    <title>LAudio</title>
+    <vendor>root</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="LAudio.jar" size="233383" download="eager" />
+    <jar href="lib/j-ogg-all-1.0.0.jar" size="159612" download="eager" />
+    <jar href="lib/jaad-0.8.5.jar" size="575505" download="eager" />
+    <jar href="lib/jflac-codec-1.5.2.jar" size="81828" download="eager" />
+    <jar href="lib/jlayer-1.0.1.4.jar" size="140987" download="eager" />
+    <jar href="lib/jspeex0.9.7.jar" size="99833" download="eager" />
+    <jar href="lib/mp3spi-1.9.5-1.jar" size="33102" download="eager" />
+    <jar href="lib/tritonus-share-0.3.7-2.jar" size="222315" download="eager" />
+    <jar href="lib/vorbis-java-core-0.8.jar" size="121084" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="LAudio" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="laudio.Main"  name="LAudio" />
+  <update check="always"/>
+</jnlp>
