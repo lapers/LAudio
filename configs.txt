@@ -1,0 +1,4 @@
+volume=0.06382979
+source_folder=/mnt/md0/music
+selected_track=0
+theme=/res/css/main.css

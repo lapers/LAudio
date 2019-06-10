@@ -3,6 +3,7 @@ package laudio;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
@@ -29,6 +30,8 @@ class Player {
     public static PlayerEntry entry = null;
     public static float volume = 1.0f;
         
+    private final static int recursion = 3;
+    
     static void LoadFile(File file) {
         Player.path = file.getParent();
         list.getItems().clear();
@@ -44,7 +47,7 @@ class Player {
         list.getItems().clear();
         Player.files.clear();
         
-        File files[] = getFiles(path);
+        File files[] = getFiles(path, recursion);
         if (files == null || files.length <= 0) return;
         Arrays.sort(files, (File a, File b) -> a.getName().toLowerCase().compareTo(b.getName().toLowerCase()));
         
@@ -55,17 +58,40 @@ class Player {
         }
     }
     
-    private static File[] getFiles(String dir) {
-        return new File(dir).listFiles((pathname) -> {
+    private static File[] getFiles(String dir, int recursion) {
+        ArrayList<File> flist = new ArrayList<>();
+        flist.addAll(Arrays.asList(new File(dir).listFiles((pathname) -> {
             String formats[] = {
                 ".mp3", ".ogg", ".wav", ".aac", ".flac"
             };
-            for (String format : formats) {
-                String name = pathname.getName();
-                if (name.endsWith(format) || name.endsWith(format.toUpperCase())) return true;
+            File cur_file = new File(pathname.getAbsolutePath());
+            if (cur_file.isDirectory() && recursion > 0) {
+                File files[] = getFiles(cur_file.getAbsolutePath(), recursion);
+                flist.addAll(Arrays.asList(files));
+            }
+            else {
+                for (String format : formats) {
+                    String name = pathname.getName();
+                    if (name.endsWith(format) || name.endsWith(format.toUpperCase())) return true;
+                }
             }
             return false;   
-        });
+        })));
+        return flist.toArray(new File[flist.size()]);
+    }
+    
+    public static void Shuffle() {
+        if (Player.files.size() < 1) return;
+        Collections.shuffle(Player.files);
+        
+        list.getItems().clear();
+        int id = 1;
+        for (File file : files) {
+            list.getItems().add((id++) + ". " + file.getName());
+        }
+        
+        Set(0);
+        Play();
     }
     
     public static boolean Set(int id) {

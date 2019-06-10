@@ -41,6 +41,7 @@ public class Main extends Application {
         Image tofImg = new Image(getClass().getResourceAsStream("/res/open.png"));
         Image tosImg = new Image(getClass().getResourceAsStream("/res/note.png"));
         Image tstImg = new Image(getClass().getResourceAsStream("/res/themes.png"));
+        Image shflImg = new Image(getClass().getResourceAsStream("/res/shuffle.png"));
         UIButton tofBtn = new UIButton(tofImg, 20, 20, 16, 16, () -> {
             DirectoryChooser fc = new DirectoryChooser();
             fc.setInitialDirectory(new java.io.File(Player.path));
@@ -95,7 +96,12 @@ public class Main extends Application {
             contextMenu.show(tstBtn, a.getScreenX(), a.getScreenY());
         });
         tstBtn.setContextMenu(contextMenu);
-        HBox tools = new HBox(lab, tofBtn, tosBtn, tstBtn);
+        
+        UIButton shflBtn = new UIButton(shflImg, 20, 20, 16, 16, () -> {
+            Player.Shuffle();
+        }, "tools-btn");
+        
+        HBox tools = new HBox(lab, tofBtn, tosBtn, tstBtn, shflBtn);
         tools.getStyleClass().add("tools");
         
         Image ttlMinImg = new Image(getClass().getResourceAsStream("/res/minimize.png"));
