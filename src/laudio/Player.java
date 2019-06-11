@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import laudio.entries.*;
+import laudio.Main.*;
 
 class Player {
     private static boolean isMuted = false;
@@ -19,7 +20,7 @@ class Player {
     private static UIButton playBtn = null;
     private static Slider slider = null;
     public static Slider volSlider = null;
-    private static ListView<String> list = null;
+    private static ListView<HBoxCell> list = null;
     public static File selected = null;
     public  static String path = ".";
     public static ArrayList<File> files = new ArrayList<>();
@@ -32,11 +33,19 @@ class Player {
         
     private final static int recursion = 3;
     
+    static void ListFiles(File... files) {
+        int id = 1;
+        for (File file : files) {
+            list.getItems().add(new HBoxCell((id++) + ". " + file.getName(), file.getAbsolutePath()));
+        }
+        list.getItems().forEach((cell) -> { cell.init(); });
+    }
+    
     static void LoadFile(File file) {
         Player.path = file.getParent();
         list.getItems().clear();
         Player.files.clear();
-        list.getItems().add("1. " + file.getName());
+        ListFiles(file);
         Player.files.add(file);
         Set(0);
     }
@@ -51,9 +60,8 @@ class Player {
         if (files == null || files.length <= 0) return;
         Arrays.sort(files, (File a, File b) -> a.getName().toLowerCase().compareTo(b.getName().toLowerCase()));
         
-        int id = 1;
+        ListFiles(files);
         for (File file : files) {
-            list.getItems().add((id++) + ". " + file.getName());
             Player.files.add(file);
         }
     }
@@ -85,10 +93,7 @@ class Player {
         Collections.shuffle(Player.files);
         
         list.getItems().clear();
-        int id = 1;
-        for (File file : files) {
-            list.getItems().add((id++) + ". " + file.getName());
-        }
+        ListFiles(files.toArray(new File[files.size()]));
         
         Set(0);
         Play();
@@ -240,9 +245,9 @@ class Player {
         Player.timeLbl = label;
     }
     
-    public static void setList(ListView<String> list) {
+    public static void setList(ListView<HBoxCell> list) {
         Player.list = list;
-        list.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+        list.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends HBoxCell> observable, HBoxCell oldValue, HBoxCell newValue) -> {
             Set(list.getItems().indexOf(newValue));
             ForcePlay();
             Platform.runLater(() -> {

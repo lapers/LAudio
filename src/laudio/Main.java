@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.application.Application;
@@ -31,6 +32,7 @@ public class Main extends Application {
     
     private Scene scene;
     public static Map<String, String> configs = new HashMap<String, String>();
+    public static ArrayList<String> favorites = new ArrayList<String>();
     
     @Override
     public void start(Stage stage) {
@@ -174,7 +176,7 @@ public class Main extends Application {
         mContainer.getChildren().add(player);
         
         Label listOpenLbl = new Label("▶ All songs");
-        ListView<String> list = new ListView<String>();
+        ListView<HBoxCell> list = new ListView<>();
         Player.setList(list);
         VBox popList = new VBox(new HBox(listOpenLbl), list);
         popList.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -221,6 +223,28 @@ public class Main extends Application {
     }
     
     private void Initialize() {
+        String favors = "";
+        try {
+            File cffile = new File("./favorites.txt");
+            if (!cffile.exists()) Files.copy(getClass().getResourceAsStream("/res/favorites"), Paths.get("./favorites.txt"));
+            
+            InputStream is = new FileInputStream(cffile);
+            ByteArrayOutputStream result = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) != -1) {
+                result.write(buffer, 0, length);
+            }
+            favors = result.toString("UTF-8");
+        } catch (IOException ex) { }
+        
+        String flines[] = favors.split("\n");
+        for (String line : flines) {
+            favorites.add(line);
+        }
+        
+        
+        
         String configs = "";
         try {
             File cffile = new File("./configs.txt");
@@ -258,6 +282,7 @@ public class Main extends Application {
                 Player.Set(track);
             }
         }
+                
         if (Player.selected == null && Player.files.size() > 0) Player.Set(0);
     }
 
@@ -271,6 +296,14 @@ public class Main extends Application {
         try (PrintWriter out = new PrintWriter("./configs.txt")) {
             configs.forEach((key, val) -> {
                 out.println(key + "=" + val);
+            });
+        }
+        catch (Exception ex) { ex.printStackTrace(); }
+    }
+    public static void UpdateFavorites() {
+        try (PrintWriter out = new PrintWriter("./favorites.txt")) {
+            favorites.forEach((val) -> {
+                out.println(val);
             });
         }
         catch (Exception ex) { ex.printStackTrace(); }

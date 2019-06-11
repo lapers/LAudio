@@ -150,5 +150,18 @@
     -fx-background-color: #444;
 }
 .player-list ListView *:focused {
-    -fx-background-color: #666;
+    -fx-padding: 0px 3px 0px 5px;
+    -fx-border-color: #333;
+    -fx-border-width: 3px;
+}
+.player-list ListView UIButton:focused {
+    -fx-padding: 3px;
+    -fx-background-color: #777;
+    -fx-border-width: 0px;
+}
+
+.hboxcell * {
+    -fx-padding: 3px;
+    -fx-background-color: #777;
+    -fx-border-width: 0px;
 }
