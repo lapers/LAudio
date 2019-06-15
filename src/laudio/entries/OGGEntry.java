@@ -114,6 +114,7 @@ public class OGGEntry extends laudio.PlayerEntry {
         try {
             din.close();
             in.close();
+            audio_out_line.close();
         } catch(Exception e) { e.printStackTrace(); }
         
         is_opened = false;

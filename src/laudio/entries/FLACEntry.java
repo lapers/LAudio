@@ -102,6 +102,10 @@ public class FLACEntry extends laudio.PlayerEntry {
     @Override public void stop() {
         status = -1;
         thread.stop();
+        try {
+            decoder.close();
+            audio_out_line.close();
+        } catch (Exception ex) { ex.printStackTrace(); }
         is_opened = false;
     }
     
