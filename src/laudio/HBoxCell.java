@@ -9,8 +9,8 @@ public class HBoxCell extends HBox {
     String path;
     
     Label label = new Label();
-    Image unlikeImg = new Image(getClass().getResourceAsStream("/res/star.png"));
-    Image likeImg = new Image(getClass().getResourceAsStream("/res/star_filled.png"));
+    static Image unlikeImg = new Image(Main.class.getResourceAsStream("/res/star.png"));
+    static Image likeImg = new Image(Main.class.getResourceAsStream("/res/star_filled.png"));
     UIButton likeBtn;
     boolean liked = false;
 

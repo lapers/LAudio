@@ -44,6 +44,7 @@ public class MP3Entry extends laudio.PlayerEntry {
             audio_mute.setValue(muted);
             audio_out_line.start();
             
+            
             status = 0;
             thread = new Thread(() -> { update(); });
             thread.start();
@@ -107,6 +108,7 @@ public class MP3Entry extends laudio.PlayerEntry {
         try {
             din.close();
             in.close();
+            audio_out_line.close();
         } catch(Exception e) { e.printStackTrace(); }
         
         is_opened = false;

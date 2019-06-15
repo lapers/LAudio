@@ -11,7 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import laudio.entries.*;
-import laudio.Main.*;
 
 class Player {
     private static boolean isMuted = false;
@@ -86,6 +85,21 @@ class Player {
             return false;   
         })));
         return flist.toArray(new File[flist.size()]);
+    }
+    
+    public static void LoadFovorites() {
+        if (entry != null) entry.stop();
+        list.getItems().clear();
+        Player.files.clear();
+        
+        for (String favor : Main.favorites) {
+            File fav_file = new File(favor);
+            if (fav_file.exists()) files.add(fav_file);
+        }
+        ListFiles(files.toArray(new File[files.size()]));
+
+        Set(0);
+        Play();
     }
     
     public static void Shuffle() {

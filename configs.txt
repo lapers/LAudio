@@ -1,4 +1,4 @@
-volume=0.06382979
+volume=0.31914893
 source_folder=/mnt/md0/music
-selected_track=0
+selected_track=25
 theme=/res/css/purple.css
